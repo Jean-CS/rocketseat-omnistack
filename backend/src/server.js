@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const app = express();
 
@@ -14,6 +15,7 @@ mongoose.connect(`mongodb+srv://${user}:${pass}@cluster0-j1aro.mongodb.net/${db}
 app.use(express.json());
 // Allows requests with file data
 app.use(express.urlencoded({ extend: true }));
+app.use('/files', express.static(path.resolve(__dirname, '..', 'temp')));
 
 app.use(require('./routes'));
 
