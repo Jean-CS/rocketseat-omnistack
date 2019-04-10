@@ -4,6 +4,9 @@ const path = require('path');
 
 const app = express();
 
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
 const user = 'rocketseat';
 const pass = 'rocketseat';
 const db = 'omnistack';
@@ -19,4 +22,4 @@ app.use('/files', express.static(path.resolve(__dirname, '..', 'temp')));
 
 app.use(require('./routes'));
 
-app.listen(3333);
+server.listen(3333);
