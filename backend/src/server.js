@@ -26,7 +26,7 @@ mongoose.connect(`mongodb+srv://${user}:${pass}@cluster0-j1aro.mongodb.net/${db}
 });
 
 // Enable a global variable 'io' inside req
-app.use((req, res) => {
+app.use((req, res, next) => {
     req.io = io;
 
     return next();
