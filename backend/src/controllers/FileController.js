@@ -13,6 +13,9 @@ class FileController {
         box.files.push(file);
         await box.save();
 
+        // Trigget a real time response inside the same socketio box
+        req.io.sockets.in(box._id).emit('file', file);
+
         return res.json(file);
     }
 }
