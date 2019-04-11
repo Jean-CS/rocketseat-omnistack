@@ -37,6 +37,13 @@ app.use(express.json());
 // Allows requests with file data
 app.use(express.urlencoded({ extend: true }));
 app.use('/files', express.static(path.resolve(__dirname, '..', 'temp')));
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
 
 app.use(require('./routes'));
 

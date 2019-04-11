@@ -28,7 +28,7 @@ export default class Box extends Component {
     // Connect Client to backend WebSocket
     subscribeToNewFiles = () => {
         const box = this.props.match.params.id;
-        const io = socket('https://rocketseat-omnistack-backend.herokuapp.com');
+        const io = socket('');
 
         io.emit('connectRoom', box);
         io.on('file', data => {
