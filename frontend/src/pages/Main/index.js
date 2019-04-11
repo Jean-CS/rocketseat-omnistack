@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
 
+import { MdDonutLarge } from 'react-icons/md';
+
 import './styles.css';
 
 export default class Main extends Component {
@@ -15,7 +17,8 @@ export default class Main extends Component {
             title: this.state.newBox,
         });
 
-        console.log(res.data);
+        // Props passed down from Router 'routes.js'
+        this.props.history.push(`/box/${res.data._id}`);
     };
 
     handleInputChange = e => {
@@ -28,7 +31,7 @@ export default class Main extends Component {
         return (
             <div id="main-container">
                 <form onSubmit={this.handleSubmit}>
-                    <i className="fas fa-magnet " />
+                    <MdDonutLarge size={50} color="#7159c1" />
                     <input placeholder="Criar um box" value={this.state.newBox} onChange={this.handleInputChange} />
                     <button type="submit">Criar</button>
                 </form>
